@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorator="layouts/main" xmlns:layout="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Backlog</title>
+</head>
+<body>
+
+<div layout:fragment="content">
+    <div th:utext="${releasenotes}">Releasenotes</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en"
+	  xmlns:th="http://www.thymeleaf.org"
+	  layout:decorator="layouts/main" xmlns:layout="http://www.w3.org/1999/xhtml">
+<head>
+	<title th:text="'Roster for ' + ${project.name}">Project Roster Title</title>
+</head>
+<body>
+	<div layout:fragment="content">
+	
+		<h2 th:text="'Roster for ' + ${project.name}">Project Roster</h2>
+		<form class="form-inline">
+			<div class="form-group">
+				<label>Start:</label>
+                <p class="form-control-static" th:text="${#calendars.format(project.startDate, 'dd.MM.yyyy')}">start</p>
+			</div>
+			<div class="form-group">
+				<label >End:</label>
+                <p class="form-control-static" th:text="${#calendars.format(project.endDate, 'dd.MM.yyyy')}">end</p>
+			</div>
+		</form>
+
+        <a th:href="@{roster/add}">Add New Assignment</a>
+        <div class="panel-group>">
+            <div class="panel panel-default" th:each="assignee : ${roster}">
+                <!-- person -->
+                <div class="panel-heading" th:text="${assignee.user.lastName} + ', ' + ${assignee.user.firstName}">Name</div>
+                <div class="panel-body">
+                    <!-- periods -->
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>from</th>
+                            <th>to</th>
+                            <th>percentage</th>
+                            <th>delete</th>
+                            <th>edit</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="period, iterationStatus : ${assignee.periods}">
+                                <td th:text="${#calendars.format(period.start,'dd.M.yyy')}">start</td>
+                                <td th:text="${#calendars.format(period.end,'dd.M.yyy')}">end</td>
+                                <td th:text="${period.percentage}">percentage</td>
+                                <td><a href="#"
+                                   th:href="@{roster/{id}/period/{idx}/delete(id=${assignee.id}, idx=${iterationStatus.count})}">
+                                    delete</a></td>
+                                <td><a href="#"
+                                       th:href="@{roster/{id}/period/{idx}/edit(id=${assignee.id}, idx=${iterationStatus.count})}">
+                                    edit</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="panel-footer"><a th:href="@{roster/} + ${assignee.id} + @{/add}">Add New Period</a></div>
+
+            </div>
+        </div>
+        </div>
+
+</body>
+</html>
