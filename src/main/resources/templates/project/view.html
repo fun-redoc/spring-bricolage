@@ -52,8 +52,8 @@
 						</tr>
 						</thead>
 						<tbody>
-						<tr th:each="ass : ${project.projectUserAssignmentList}">
-							<td th:text="${ass.user.lastName + ', ' + ass.user.firstName}">user name</td>
+						<tr th:each="ass : ${project.projectPersonList}">
+							<td th:text="${ass.person.lastName + ', ' + ass.person.firstName}">person name</td>
 						</tr>
 						</tbody>
 					</table>
@@ -61,11 +61,8 @@
 			</div>
 		</form>
 
+		<a th:href="@{/projects}">Back To Project List</a>
 
-
-		<a th:href="@{/projects/list/}">Back To Project List</a>
-		<br/><br/><br/>
-		
 	</div>
 		
 </body>

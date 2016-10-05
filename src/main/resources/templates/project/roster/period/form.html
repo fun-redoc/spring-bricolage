@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<layout:html lang="en"
+			 xmlns:th="http://www.thymeleaf.org"
+			 layout:decorator="layouts/main" xmlns:layout="http://www.w3.org/1999/xhtml">
+<head>
+	<title th:text="'Create New Assignment for ' + ${roster.project.name}">Create New Project Assignment</title>
+</head>
+<body>
+		
+	<div layout:fragment="content">
+	
+		<h2 th:text="'Project: ' + ${roster.project.name}">Create New Project</h2>
+		<form class="form-inline">
+			<div class="form-group">
+				<label>Start:</label>
+				<p class="form-control-static" th:text="${#calendars.format(roster.project.startDate, 'dd.MM.yyyy')}">start</p>
+			</div>
+			<div class="form-group">
+				<label >End:</label>
+				<p class="form-control-static" th:text="${#calendars.format(roster.project.endDate, 'dd.MM.yyyy')}">end</p>
+			</div>
+            <div class="form-group">
+                <a th:href="@{/projects/{projectId}/roster(projectId=${roster.project.id})}">Back To Roster</a>
+			</div>
+		</form>
+
+		<h4 th:text="'Person: ' + ${roster.person.lastName} + ', ' + ${roster.person.firstName}">Create New Project</h4>
+        <br/>
+
+		<form class="form-inline" th:object="${period}" th:action="@{period}" method="post">
+			<!-- start date -->
+			<div th:class="form-group" th:classappend="${#fields.hasErrors('start')}? 'has-error'">
+				<label class="control-label">Start Date <span class="required">*</span></label>
+				<div >
+					<input type="datetime" class="form-control" th:field="*{start}" />
+					<span th:if="${#fields.hasErrors('start')}" th:errors="*{start}" th:class="help-block">Start Date Errors</span>
+				</div>
+			</div>
+
+			<!-- end date -->
+			<div th:class="form-group" th:classappend="${#fields.hasErrors('end')}? 'has-error'">
+				<label class=" control-label">End Date <span class="required">*</span></label>
+				<div >
+					<input type="datetime" class="form-control" th:field="*{end}" />
+					<span th:if="${#fields.hasErrors('end')}" th:errors="*{end}" th:class="help-block">End Date Errors</span>
+				</div>
+			</div>
+
+			<!-- percentage -->
+			<div th:class="form-group" th:classappend="${#fields.hasErrors('percentage')}? 'has-error'">
+				<label class=" control-label">Percentage </label>
+				<div >
+					<input type="number" class="form-control" th:field="*{percentage}" />
+					<span th:if="${#fields.hasErrors('percentage')}" th:errors="*{percentage}" th:class="help-block">Percentage Errors</span>
+				</div>
+			</div>
+
+			<button type="submit" class="btn btn-primary pull-right">Submit</button>
+		</form>
+
+	</div>
+		
+</body>
+</layout:html>

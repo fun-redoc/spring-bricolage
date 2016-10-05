@@ -26,7 +26,7 @@ public interface ProjectRepository extends CrudRepository<Project, Long>, QueryD
 //    @Transactional(timeout = 10)
 //    <S extends Project> S save(S entity);
 
-    // select * from project as p, project_user_assignment as a, user as u where u.id = 1 and a.user_id = u.id and a.project_id = p.id
-    @Query("SELECT p FROM Project p JOIN p.projectUserAssignmentList a JOIN a.user u WHERE u.id = :id ")
-    List<Project> findByUserId(@Param("id") Long id);
+    // select * from project as p, project_user_assignment as a, person as u where u.id = 1 and a.user_id = u.id and a.project_id = p.id
+    @Query("SELECT p FROM Project p JOIN p.projectPersonList a JOIN a.person u WHERE u.id = :id ")
+    List<Project> findByPersonId(@Param("id") Long id);
 }

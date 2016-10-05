@@ -1,6 +1,6 @@
 package com.rsh.project.controller;
 
-import com.rsh.project.repository.UserRepository;
+import com.rsh.project.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,26 +8,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @Controller
-@RequestMapping("/users")
+@RequestMapping("/persons")
 @SuppressWarnings("unused")
-public class UserController {
+public class PersonController {
 
-	private UserRepository userRepository;
+	private PersonRepository personRepository;
 
 	@Autowired
-	public UserController(UserRepository userRepository) {
+	public PersonController(PersonRepository personRepository) {
 		super();
-		this.userRepository = userRepository;
+		this.personRepository = personRepository;
 	}
 	
 	@RequestMapping("/list")
 	public String list(Model model){
-		model.addAttribute("users", userRepository.findAll());
-		return "user/list";
+		model.addAttribute("persons", personRepository.findAll());
+		return "person/list";
 	}
 	
 	@RequestMapping("/view")
 	public String view(Model model){
-		return "user/view";
+		return "person/view";
 	}
 }

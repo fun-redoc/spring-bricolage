@@ -1,4 +1,4 @@
-package com.rsh.project.config;
+package com.rsh.security.config;
 
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.context.annotation.Configuration;

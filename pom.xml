@@ -245,8 +245,8 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <!-- needed for devtools restart -->
-                    <fork>true</fork>
+                    <!-- needed for devtools restart
+                    <fork>true</fork>-->
                     <!-- also restart on changes in ressources -->
                     <addResources>true</addResources>
                 </configuration>

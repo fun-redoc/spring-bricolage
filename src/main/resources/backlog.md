@@ -10,5 +10,8 @@
 - i should replace thymeleaf by res and angular
 - i should use cache
 
+## Issues ##
+- ISSUE: Query dsl dos not compile from IDEA, workaround: after changes to Repositories use mvn package -P<profile> to generater Q-classes
+
 ## Ready ##
 - Basic Application

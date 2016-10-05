@@ -1,9 +1,8 @@
 package com.rsh.project.repository;
 
-import com.rsh.project.domain.Period;
-import com.rsh.project.domain.Project;
-import com.rsh.project.domain.ProjectUserAssignment;
-import com.rsh.project.domain.User;
+import com.rsh.project.domain.*;
+import com.rsh.project.domain.ProjectPerson;
+import com.rsh.project.domain.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -40,22 +39,22 @@ public class ProjectRestRepository {
                         ce.setTime(rs.getDate("end_date"));
                         p.setEndDate(ce);
                         p.setDescription(rs.getString("description"));
-                        User u = User.builder()
+                        Person u = Person.builder()
                                 .email(rs.getString("email"))
                                 .firstName(rs.getString("first_name"))
                                 .lastName(rs.getString("last_name"))
                                 .id(rs.getLong("uid"))
                                 .build();
-                        ProjectUserAssignment pa = ProjectUserAssignment.builder()
+                        ProjectPerson pa = ProjectPerson.builder()
                                     .id(rs.getLong("aid"))
-                                    .user(u)
+                                    .person(u)
                                     //.project(p)
                                     .periods(getPeriods(rs.getLong("aid")))
                                     .build();
 
-                        List<ProjectUserAssignment> pas = new ArrayList<>();
+                        List<ProjectPerson> pas = new ArrayList<>();
                         pas.add(pa);
-                        p.setProjectUserAssignmentList(pas);
+                        p.setProjectPersonList(pas);
                         return p;
 				}
         );
@@ -92,7 +91,7 @@ public class ProjectRestRepository {
             ce.setTime(rs.getDate("end_date"));
             p.setEndDate(ce);
             p.setDescription(rs.getString("description"));
-            p.setProjectUserAssignmentList(new ArrayList<>());
+            p.setProjectPersonList(new ArrayList<>());
             return p;
         });
 	}

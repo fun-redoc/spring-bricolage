@@ -39,7 +39,7 @@
 						<li class="dropdown" th:class="${controllerName == 'Project'} ? 'dropdown active' : 'dropdown'" sec:authorize="hasRole('ROLE_PROJECT')">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Project <span class="caret"></span></a>
 							<ul class="dropdown-menu">
-								<li><a href="/projects/list">Projects</a></li>
+								<li><a href="/projects">Projects</a></li>
 							</ul>
 						</li>
 
@@ -47,7 +47,7 @@
 						<li class="dropdown" th:class="${controllerName == 'Admin'} ? 'dropdown active' : 'dropdown'" sec:authorize="hasRole('ROLE_ADMIN')">
 				            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin <span class="caret"></span></a>
 				            <ul class="dropdown-menu">
-				                <li><a href="/admin/users/">Users</a></li>
+				                <li><a href="/admin/persons/">Persons</a></li>
 								<li><a href="/admin/releasenotes/">Releasenotes</a></li>
 				            </ul>
 				        </li>

@@ -20,11 +20,13 @@
 			</div>
 		</form>
 
-        <a th:href="@{roster/add}">Add New Assignment</a>
+        <a th:href="@{?create}">Add New Assignment</a>
+        <br/>
+
         <div class="panel-group>">
             <div class="panel panel-default" th:each="assignee : ${roster}">
                 <!-- person -->
-                <div class="panel-heading" th:text="${assignee.user.lastName} + ', ' + ${assignee.user.firstName}">Name</div>
+                <div class="panel-heading" th:text="${assignee.person.lastName} + ', ' + ${assignee.person.firstName}">Name</div>
                 <div class="panel-body">
                     <!-- periods -->
                     <table class="table table-striped">
@@ -43,16 +45,16 @@
                                 <td th:text="${#calendars.format(period.end,'dd.M.yyy')}">end</td>
                                 <td th:text="${period.percentage}">percentage</td>
                                 <td><a href="#"
-                                   th:href="@{roster/{id}/period/{idx}/delete(id=${assignee.id}, idx=${iterationStatus.count})}">
+                                   th:href="@{roster/{id}/period/{idx}?delete(id=${assignee.id}, idx=${iterationStatus.count})}">
                                     delete</a></td>
                                 <td><a href="#"
-                                       th:href="@{roster/{id}/period/{idx}/edit(id=${assignee.id}, idx=${iterationStatus.count})}">
+                                       th:href="@{roster/{id}/period/{idx}?edit(id=${assignee.id}, idx=${iterationStatus.count})}">
                                     edit</a></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
-                <div class="panel-footer"><a th:href="@{roster/} + ${assignee.id} + @{/add}">Add New Period</a></div>
+                <div class="panel-footer"><a th:href="@{roster/{id}/period?create(id=${assignee.id})}">Add New Period</a></div>
 
             </div>
         </div>

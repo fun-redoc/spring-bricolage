@@ -18,7 +18,7 @@ import java.util.List;
 @AllArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @Builder
-public class ProjectUserAssignment {
+public class ProjectPerson {
     @Id
     @GeneratedValue
     private Long id;
@@ -32,7 +32,7 @@ public class ProjectUserAssignment {
     @ManyToOne
     @NotNull
     //@JsonManagedReference
-    private User user;
+    private Person person;
 
     @ElementCollection
     @CollectionTable(

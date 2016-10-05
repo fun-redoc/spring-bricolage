@@ -19,7 +19,7 @@ import java.util.List;
 //@Setter
 @RequiredArgsConstructor
 @AllArgsConstructor
-@ToString(exclude = "projectUserAssignmentList")
+@ToString(exclude = "projectPersonList")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @Builder
 public class Project {
@@ -50,9 +50,9 @@ public class Project {
     //@JsonBackReference
     //@OneToMany(mappedBy="project", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     @OneToMany(mappedBy="project")
-    @Getter private List<ProjectUserAssignment> projectUserAssignmentList;
-    public void setProjectUserAssignmentList(List<ProjectUserAssignment> projectUserAssignmentList) {
-        this.projectUserAssignmentList.clear();
-        this.projectUserAssignmentList.addAll(projectUserAssignmentList);
+    @Getter private List<ProjectPerson> projectPersonList;
+    public void setProjectPersonList(List<ProjectPerson> projectPersonList) {
+        this.projectPersonList.clear();
+        this.projectPersonList.addAll(projectPersonList);
     }
 }

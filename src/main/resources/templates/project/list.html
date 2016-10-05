@@ -29,14 +29,14 @@
 					<td th:text="${project.name}">name</td>
 					<td th:text="${#calendars.format(project.startDate,'dd.M.yyy')}">start Date</td>
 					<td th:text="${#calendars.format(project.endDate,'dd.M.yyy')}">end Date</td>
-					<td><a href="#" th:href="@{/projects/view/} + ${project.id}">View</a></td>
-					<td><a href="#" th:href="@{/projects/edit/} + ${project.id}">Edit</a></td>
-					<td><a href="#" th:href="@{/projects/} + ${project.id} + '/roster'">Roster</a></td>
+					<td><a href="#" th:href="@{/projects/} + ${project.id}">View</a></td>
+					<td><a href="#" th:href="@{/projects/{id}?edit(id=${project.id})}">Edit</a></td>
+					<td><a href="#" th:href="@{/projects/{id}/roster(id=${project.id})}">Roster</a></td>
 				</tr>
 			</tbody>
 		</table>
 		
-		<a th:href="@{/projects/create}">Add New Project</a>
+		<a th:href="@{/projects?create}">Add New Project</a>
 		<br/><br/>
 		
 		<p th:if="${projects.size() == 0}">

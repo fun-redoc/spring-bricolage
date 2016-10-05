@@ -1,6 +1,6 @@
 package com.rsh.project.controller;
 
-import com.rsh.project.repository.UserRepository;
+import com.rsh.project.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,16 +9,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class HomeController {
 	
-	private UserRepository userRepository;
+	private PersonRepository personRepository;
 	
 	@Autowired
-	public HomeController(UserRepository userRepository){
-		this.userRepository = userRepository;
+	public HomeController(PersonRepository personRepository){
+		this.personRepository = personRepository;
 	}
 	
 	@RequestMapping("/")
 	public String home(Model model){
-//		model.addAttribute("user", .. currently loged in user ..);
+//		model.addAttribute("person", .. currently loged in person ..);
 		return "index";
 	}
 	

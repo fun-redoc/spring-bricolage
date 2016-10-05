@@ -12,7 +12,7 @@ import java.util.List;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @AllArgsConstructor
 @Builder
-public class User {
+public class Person {
 	
 	@Id
 	@GeneratedValue
@@ -21,19 +21,19 @@ public class User {
 	private String lastName;
 	private String email;
 
-	@OneToMany(mappedBy="user", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy="person", cascade = CascadeType.ALL, orphanRemoval = true)
 	//@JsonBackReference
-	private List<ProjectUserAssignment> projectUserAssignmentList;
+	private List<ProjectPerson> projectPersonList;
 
 	@SuppressWarnings("unused")
-	public User(){}
+	public Person(){}
 	
-	public User(String first, String last){
+	public Person(String first, String last){
 		this.setFirstName(first);
 		this.setLastName(last);
 	}
 	
-	public User(String first, String last, String email){
+	public Person(String first, String last, String email){
 		this.setFirstName(first);
 		this.setLastName(last);
 		this.setEmail(email);
@@ -73,7 +73,7 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [firstName=" + firstName + ", lastName=" + lastName + "]";
+		return "Person [firstName=" + firstName + ", lastName=" + lastName + "]";
 	}
 	
 	

@@ -20,12 +20,12 @@
 				</tr> 
 			</thead>
 			<tbody>
-				<tr th:each="user, iterationStatus : ${users}">
+				<tr th:each="person, iterationStatus : ${persons}">
 					<td th:text="${iterationStatus.count}">1</td>
-					<td th:text="${user.firstName}">First Name</td>
-					<td th:text="${user.lastName}">Last Name</td>
-					<td th:text="${user.email}">Email Address</td>
-					<td><a th:href="|/projects/byUser/${user.id}|">Projects By User</a></td>
+					<td th:text="${person.firstName}">First Name</td>
+					<td th:text="${person.lastName}">Last Name</td>
+					<td th:text="${person.email}">Email Address</td>
+					<td><a th:href="|/projects/byUser/${person.id}|">Projects By User</a></td>
 				</tr>
 			</tbody>
 		</table>

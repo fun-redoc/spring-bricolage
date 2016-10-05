@@ -12,7 +12,7 @@
 		<h2>Create New Project</h2>
 		<br/>
 
-		<form class="form-horizontal" th:object="${project}" th:action="@{/projects/save}" method="post">
+		<form class="form-horizontal" th:object="${project}" th:action="@{/projects}" method="post">
 			<!-- Id -->
 			<input type="hidden" th:field="*{id}" />
 
@@ -32,7 +32,7 @@
 					<input type="datetime" class="form-control" th:field="*{startDate}" />
 					<span th:if="${#fields.hasErrors('startDate')}" th:errors="*{startDate}" th:class="help-block">Start Date Errors</span>
 				</div>
-			</div>
+            </div>
 
 			<!-- end date -->
 			<div th:class="form-group" th:classappend="${#fields.hasErrors('endDate')}? 'has-error'">
@@ -42,6 +42,7 @@
 					<span th:if="${#fields.hasErrors('endDate')}" th:errors="*{endDate}" th:class="help-block">End Date Errors</span>
 				</div>
 			</div>
+
             <!-- description -->
 			<div th:class="form-group" th:classappend="${#fields.hasErrors('description')}? 'has-error'">
 				<label class="col-sm-2 control-label">Description </label>
@@ -52,8 +53,6 @@
 			</div>		  	
 			<button type="submit" class="btn btn-primary pull-right">Submit</button>
 		</form>
-		
-		<br/><br/><br/>
 		
 	</div>
 		

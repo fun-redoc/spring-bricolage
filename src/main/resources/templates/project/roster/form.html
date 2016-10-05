@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<layout:html lang="en"
+			 xmlns:th="http://www.thymeleaf.org"
+			 layout:decorator="layouts/main" xmlns:layout="http://www.w3.org/1999/xhtml">
+<head>
+	<title th:text="'Create New Assignment for ' + ${project.name}">Create New Project Assignment</title>
+</head>
+<body>
+		
+	<div layout:fragment="content">
+	
+		<h2 th:text="'Create New Assignment for ' + ${project.name}">Create New Project</h2>
+		<form class="form-inline">
+			<div class="form-group">
+				<label>Start:</label>
+				<p class="form-control-static" th:text="${#calendars.format(project.startDate, 'dd.MM.yyyy')}">start</p>
+			</div>
+			<div class="form-group">
+				<label >End:</label>
+				<p class="form-control-static" th:text="${#calendars.format(project.endDate, 'dd.MM.yyyy')}">end</p>
+			</div>
+		</form>
+
+		<form class="form-horizontal" th:object="${roster}" th:action="@{roster}" method="post">
+			<!-- Id -->
+			<input type="hidden" th:field="*{id}" />
+
+			<!-- person selection -->
+
+			<!-- periods -->
+
+			<button type="submit" class="btn btn-primary pull-right">Submit</button>
+		</form>
+		
+		<br/><br/><br/>
+		
+	</div>
+		
+</body>
+</layout:html>
