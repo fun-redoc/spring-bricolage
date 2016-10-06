@@ -2,9 +2,8 @@ package com.rsh.project.controller.admin;
 
 import javax.validation.Valid;
 
-import com.rsh.project.domain.Person;
-import com.rsh.project.domain.Person;
-import com.rsh.project.repository.PersonRepository;
+import com.rsh.project.security.domain.User;
+import com.rsh.project.security.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
@@ -25,49 +24,49 @@ import com.github.rjeschke.txtmark.Processor;
 @SuppressWarnings("unused")
 public class AdminController {
 	
-	private PersonRepository personRepository;
+	private UserRepository userRepository;
 	
 	@Autowired
-	public AdminController(PersonRepository personRepository) {
-		this.personRepository = personRepository;
+	public AdminController(UserRepository userRepository) {
+		this.userRepository = userRepository;
 	}
 	
-	@RequestMapping("/admin/persons")
+	@RequestMapping("/admin/users")
 	public String list(Model model) {
-		model.addAttribute("persons", personRepository.findAll());
-		return "admin/person/list";
+		model.addAttribute("users", userRepository.findAll());
+		return "admin/user/list";
 	}
 	
-	@RequestMapping("/admin/person/{id}")
+	@RequestMapping("/admin/user/{id}")
 	public String view(@PathVariable Long id, Model model) {
-		model.addAttribute("person", personRepository.findOne(id));
-		return "admin/person/view";
+		model.addAttribute("user", userRepository.findOne(id));
+		return "admin/user/view";
 	}
 
 	// create | save
 	
-	@RequestMapping("/admin/person/create")
+	@RequestMapping("/admin/user/create")
 	public String create(Model model) {
-		model.addAttribute("person", new Person());
-		return "admin/person/form";
+		model.addAttribute("user", new User());
+		return "admin/user/form";
 	}
 	
-	@RequestMapping( value = "/admin/person/save", method = RequestMethod.POST )
-	public String save(@Valid Person person, BindingResult bindingResult, Model model) {
+	@RequestMapping( value = "/admin/user/save", method = RequestMethod.POST )
+	public String save(@Valid User user, BindingResult bindingResult, Model model) {
 				
 		if( bindingResult.hasErrors() ){
-			return "admin/person/form";
+			return "admin/user/form";
 		} else {
-			Person savedPerson = personRepository.save(person);
-			return "redirect:/admin/person/" + savedPerson.getId();
+			User savedUser = userRepository.save(user);
+			return "redirect:/admin/user/" + savedUser.getId();
 		}
 
 	}
 	
-	@RequestMapping("/admin/person/edit/{id}")
+	@RequestMapping("/admin/user/edit/{id}")
 	public String edit(@PathVariable Long id, Model model) {
-		model.addAttribute("person", personRepository.findOne(id));
-		return "admin/person/form";
+		model.addAttribute("user", userRepository.findOne(id));
+		return "admin/user/form";
 	}
 
 

@@ -11,6 +11,7 @@
 - i should use cache
 
 ## Issues ##
+- SECURITY: store password crypted
 - ISSUE: Query dsl dos not compile from IDEA, workaround: after changes to Repositories use mvn package -P<profile> to generater Q-classes
 
 ## Ready ##

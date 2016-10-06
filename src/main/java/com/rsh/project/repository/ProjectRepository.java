@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * Created by fun-redoc on 01.10.16.
  */
-//@RepositoryRestResource(collectionResourceRel = "project", path = "project")
+@RepositoryRestResource(collectionResourceRel = "project", path = "project")
 @Repository
 public interface ProjectRepository extends CrudRepository<Project, Long>, QueryDslPredicateExecutor<Project> {
     List<Project> findAll();

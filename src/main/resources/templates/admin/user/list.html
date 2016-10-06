@@ -13,19 +13,22 @@
 			<thead> 
 				<tr> 
 					<th>#</th> 
-					<th>First Name</th> 
-					<th>Last Name</th> 
+					<th>Username</th>
+					<th>Full Name</th>
 					<th>Email</th> 
-					<th>Projects By User</th>
+					<th>Roles</th>
 				</tr> 
 			</thead>
 			<tbody>
-				<tr th:each="person, iterationStatus : ${persons}">
+				<tr th:each="user, iterationStatus : ${users}">
 					<td th:text="${iterationStatus.count}">1</td>
-					<td th:text="${person.firstName}">First Name</td>
-					<td th:text="${person.lastName}">Last Name</td>
-					<td th:text="${person.email}">Email Address</td>
-					<td><a th:href="|/projects/byUser/${person.id}|">Projects By User</a></td>
+					<td th:text="${user.name}">Userame</td>
+					<td th:text="${user.fullName}">Last Name</td>
+					<td th:text="${user.email}">Email Address</td>
+					<td ><span th:each="role,iterStatRole : ${user.roles}"
+							   th:text="${iterStatRole.last}?${role.name}:${role.name} + ', '">
+                        </span>
+					</td>
 				</tr>
 			</tbody>
 		</table>

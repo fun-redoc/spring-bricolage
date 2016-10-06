@@ -1,13 +1,11 @@
-package com.rsh.security.domain;
+package com.rsh.project.security.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -16,7 +14,9 @@ import java.util.Set;
 @Entity
 @Table(name="roles")
 @SuppressWarnings("unused")
-@Data
+//@Data
+@Getter @Setter
+@ToString(exclude = {"users"})
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -30,6 +30,6 @@ public class Role {
     private String name;
 
     @ManyToMany(mappedBy = "roles")
-    private Set<User> users;
+    private Set<User> users = new HashSet<>();
 
 }

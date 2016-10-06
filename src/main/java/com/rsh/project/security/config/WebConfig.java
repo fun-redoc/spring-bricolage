@@ -1,4 +1,4 @@
-package com.rsh.security.config;
+package com.rsh.project.security.config;
 
 import com.rsh.project.interceptor.BaseInterceptor;
 import org.springframework.context.annotation.Configuration;

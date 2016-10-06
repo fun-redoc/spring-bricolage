@@ -6,26 +6,39 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 
+import com.google.common.collect.Sets;
 import com.rsh.project.domain.*;
 import com.rsh.project.repository.ProjectRepository;
 import com.rsh.project.repository.ProjectPersonRepository;
+import com.rsh.project.security.domain.Role;
+import com.rsh.project.security.domain.User;
+import com.rsh.project.security.repository.UserRepository;
+import lombok.extern.slf4j.Slf4j;
+import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import com.rsh.project.repository.PersonRepository;
 
 @Component
+@Profile({"localH2", "localMySql"})
+@Slf4j
 @SuppressWarnings("unused")
 public class DataLoader {
+
 
 	private PersonRepository personRepository;
 	private ProjectRepository projectRepository;
 	private ProjectPersonRepository projectPersonRepository;
-	
+    private UserRepository userRepository;
+
 	@Autowired
-	public DataLoader( PersonRepository personRepository,
-					  ProjectRepository projectRepository,
-					  ProjectPersonRepository projectPersonRepository){
+	public DataLoader( UserRepository userRepository,
+                      PersonRepository personRepository,
+                      ProjectRepository projectRepository,
+                      ProjectPersonRepository projectPersonRepository){
+        this.userRepository = userRepository;
 		this.personRepository = personRepository;
 		this.projectRepository = projectRepository;
 		this.projectPersonRepository = projectPersonRepository;
@@ -34,10 +47,36 @@ public class DataLoader {
 	// TODO only in local profiles
 	@PostConstruct
 	private void loadData(){
-		
+
+        userRepository.deleteAll();
         projectPersonRepository.deleteAll();
 		personRepository.deleteAll();
 		projectRepository.deleteAll();
+
+
+        // create users
+        val roleAdmin = Role.builder().name("ROLE_ADMIN").build();
+        val roleProject = Role.builder().name("ROLE_PROJECT").build();
+        val roleUser = Role.builder().name("ROLE_USER").build();
+        val userAdmin = User.builder()
+                .name("admin")
+                .email("admin@example.com")
+                .password("password")
+                .fullName("Mister Administrator")
+                .roles(Sets.newHashSet(roleAdmin))
+                .build();
+        val userProject = User.builder()
+                .name("project")
+                .password("password")
+                .fullName("Mister Project User")
+                .email("project@example.com")
+                .roles(Sets.newHashSet(roleProject,roleUser))
+                .build();
+
+        User savedAdminUser = userRepository.save(userAdmin);
+        User savedProjectUser = userRepository.save(userProject);
+        log.info("Admin User: " + savedAdminUser.toString());
+        log.info("Project User: " + savedProjectUser.toString());
 
 		// create an person
 		Person person1 = new Person("Roland","Stellmach","rlndstllmch@gmail.com");

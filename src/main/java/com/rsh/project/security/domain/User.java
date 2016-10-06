@@ -1,13 +1,13 @@
-package com.rsh.security.domain;
+package com.rsh.project.security.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.rsh.security.domain.Role;
 import lombok.*;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -16,8 +16,9 @@ import java.util.Set;
 @Entity
 @Table(name="users")
 @SuppressWarnings("unused")
-@Data
-@ToString(exclude="password")
+//@Data
+@Getter @Setter
+@ToString(exclude = {"password"})
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -33,6 +34,7 @@ public class User {
     @NotNull
     @NotEmpty
     @JsonIgnore
+    // TODO password should ne crypted bevore store
     private String password;
 
     @NotEmpty
@@ -49,6 +51,6 @@ public class User {
                 joinColumns = {@JoinColumn(name="user_id")},
                 inverseJoinColumns = {@JoinColumn(name = "role_id")}
     )
-    private Set<Role> roles;
+    private Set<Role> roles = new HashSet<>();
 
 }
