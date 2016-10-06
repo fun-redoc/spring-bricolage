@@ -12,6 +12,7 @@ import com.rsh.project.repository.ProjectRepository;
 import com.rsh.project.repository.ProjectPersonRepository;
 import com.rsh.project.security.domain.Role;
 import com.rsh.project.security.domain.User;
+import com.rsh.project.security.repository.RoleRepository;
 import com.rsh.project.security.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
@@ -32,13 +33,16 @@ public class DataLoader {
 	private ProjectRepository projectRepository;
 	private ProjectPersonRepository projectPersonRepository;
     private UserRepository userRepository;
+    private RoleRepository roleRepository;
 
 	@Autowired
 	public DataLoader( UserRepository userRepository,
+                       RoleRepository roleRepository,
                       PersonRepository personRepository,
                       ProjectRepository projectRepository,
                       ProjectPersonRepository projectPersonRepository){
         this.userRepository = userRepository;
+        this.roleRepository = roleRepository;
 		this.personRepository = personRepository;
 		this.projectRepository = projectRepository;
 		this.projectPersonRepository = projectPersonRepository;
@@ -58,6 +62,10 @@ public class DataLoader {
         val roleAdmin = Role.builder().name("ROLE_ADMIN").build();
         val roleProject = Role.builder().name("ROLE_PROJECT").build();
         val roleUser = Role.builder().name("ROLE_USER").build();
+//        val savedRoleAdmin = roleRepository.save(roleAdmin);
+//        val savedRoleProject = roleRepository.save(roleProject);
+//        val savedRoleUser = roleRepository.save(roleUser);
+
         val userAdmin = User.builder()
                 .name("admin")
                 .email("admin@example.com")

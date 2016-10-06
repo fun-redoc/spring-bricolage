@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<layout:html lang="en"
+			 xmlns:th="http://www.thymeleaf.org"
+			 layout:decorator="layouts/main" xmlns:layout="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Create New Project</title>
+</head>
+<body>
+		
+	<div layout:fragment="content">
+	
+		<h2>New User</h2>
+		<br/>
+
+		<form class="form-horizontal" th:object="${user}" th:action="@{/admin/users}" method="post">
+			<!-- Id -->
+			<input type="hidden" th:field="*{id}" />
+
+			<!-- Name -->
+			<div th:class="form-group" th:classappend="${#fields.hasErrors('name')}? 'has-error'">
+				<label class="col-sm-2 control-label">Name <span class="required">*</span></label>
+				<div class="col-md-10">
+					<input type="text" class="form-control" th:field="*{name}"/>
+					<span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" th:class="help-block">Passowrd Errors</span>
+				</div>
+			</div>
+
+			<!-- Passord -->
+			<div th:class="form-group" th:classappend="${#fields.hasErrors('password')}? 'has-error'">
+				<label class="col-sm-2 control-label">Password <span class="required">*</span></label>
+				<div class="col-md-10">
+					<input type="password" class="form-control" th:field="*{password}"/>
+					<span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" th:class="help-block">Name Errors</span>
+				</div>
+			</div>
+
+			<!-- full name -->
+			<div th:class="form-group" th:classappend="${#fields.hasErrors('fullName')}? 'has-error'">
+				<label class="col-sm-2 control-label">Full Name <span class="required">*</span></label>
+				<div class="col-md-10">
+					<input type="text" class="form-control" th:field="*{fullName}"/>
+					<span th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}" th:class="help-block">Name Errors</span>
+				</div>
+			</div>
+
+			<!-- email -->
+			<div th:class="form-group" th:classappend="${#fields.hasErrors('email')}? 'has-error'">
+				<label class="col-sm-2 control-label">email<span class="required">*</span></label>
+				<div class="col-md-10">
+					<input type="text" class="form-control" th:field="*{email}"/>
+					<span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" th:class="help-block">Name Errors</span>
+				</div>
+			</div>
+
+			<button type="submit" class="btn btn-primary pull-right">Submit</button>
+		</form>
+		
+	</div>
+		
+</body>
+</layout:html>
