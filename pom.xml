@@ -47,6 +47,7 @@
 	</properties>
 
     <profiles>
+        <!-- profile localH2: devtools -->
         <profile>
             <id>localH2</id>
             <properties>
@@ -146,6 +147,7 @@
 
             </dependencies>
         </profile>
+        <!-- profile localMySql: local test with mySql db, no devtools -->
         <profile>
             <id>localMySql</id>
             <properties>
@@ -156,6 +158,99 @@
                 <property>
                     <name>env.spring.profiles.active</name>
 <!--                    <name>env.SPRING_PROFILES_ACTIVE</name> -->
+                    <value>localMySql</value>
+                </property>
+            </activation>
+            <dependencies>
+                <dependency>
+                    <groupId>com.github.rjeschke</groupId>
+                    <artifactId>txtmark</artifactId>
+                    <version>0.13</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-security</artifactId>
+                </dependency>
+                <dependency>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-jdbc</artifactId>
+                </dependency>
+                <dependency>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-data-jpa</artifactId>
+                </dependency>
+                <dependency>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-data-rest</artifactId>
+                </dependency>
+                <dependency>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-thymeleaf</artifactId>
+                </dependency>
+                <dependency>
+                    <groupId>org.thymeleaf.extras</groupId>
+                    <artifactId>thymeleaf-extras-springsecurity4</artifactId>
+                </dependency>
+                <dependency>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-web</artifactId>
+                </dependency>
+
+                <dependency>
+                    <groupId>mysql</groupId>
+                    <artifactId>mysql-connector-java</artifactId>
+                </dependency>
+
+                <dependency>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-test</artifactId>
+                    <scope>test</scope>
+                </dependency>
+
+                <dependency>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-integration</artifactId>
+                </dependency>
+                <dependency>
+                    <groupId>org.neo4j</groupId>
+                    <artifactId>neo4j-cypher-compiler-2.1</artifactId>
+                    <version>2.1.8</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.projectlombok</groupId>
+                    <artifactId>lombok</artifactId>
+                    <version>1.16.10</version>
+                    <scope>provided</scope>
+                </dependency>
+                <dependency>
+                    <groupId>com.mysema.querydsl</groupId>
+                    <artifactId>querydsl-jpa</artifactId>
+                    <version>${querydsl.version}</version>
+                </dependency>
+                <dependency>
+                    <groupId>com.mysema.querydsl</groupId>
+                    <artifactId>querydsl-apt</artifactId>
+                    <version>${querydsl.version}</version>
+                </dependency>
+                <dependency>
+                    <groupId>com.mysema.querydsl</groupId>
+                    <artifactId>querydsl-core</artifactId>
+                    <version>${querydsl.version}</version>
+                </dependency>
+
+            </dependencies>
+        </profile>
+        <!-- profile development: develoment server cloud foundry -->
+        <profile>
+            <id>development</id>
+            <properties>
+                <activatedProperties>development</activatedProperties>
+            </properties>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+                <property>
+                    <name>env.spring.profiles.active</name>
+                    <!--                    <name>env.SPRING_PROFILES_ACTIVE</name> -->
                     <value>localMySql</value>
                 </property>
             </activation>

@@ -13,7 +13,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 @Configuration
-@Profile({"localH2", "localMySql"}) // you will need a more secure profile for production! e.g. without console
+//@Profile({"localH2", "localMySql"}) // you will need a more secure profile for production! e.g. without console
 @EnableGlobalMethodSecurity( securedEnabled = true )
 @Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
 @SuppressWarnings("unused")

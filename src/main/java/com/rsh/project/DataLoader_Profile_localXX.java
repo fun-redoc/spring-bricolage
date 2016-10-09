@@ -26,7 +26,7 @@ import com.rsh.project.repository.PersonRepository;
 @Profile({"localH2", "localMySql"})
 @Slf4j
 @SuppressWarnings("unused")
-public class DataLoader {
+public class DataLoader_Profile_localXX {
 
 
 	private PersonRepository personRepository;
@@ -36,11 +36,11 @@ public class DataLoader {
     private RoleRepository roleRepository;
 
 	@Autowired
-	public DataLoader( UserRepository userRepository,
-                       RoleRepository roleRepository,
-                      PersonRepository personRepository,
-                      ProjectRepository projectRepository,
-                      ProjectPersonRepository projectPersonRepository){
+	public DataLoader_Profile_localXX(UserRepository userRepository,
+                                      RoleRepository roleRepository,
+                                      PersonRepository personRepository,
+                                      ProjectRepository projectRepository,
+                                      ProjectPersonRepository projectPersonRepository){
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
 		this.personRepository = personRepository;
