@@ -46,7 +46,7 @@ public class User {
     @NotNull
     private String fullName;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = {CascadeType.REFRESH, CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.EAGER)
     @JoinTable( name = "users_roles",
                 joinColumns = {@JoinColumn(name="user_id")},
                 inverseJoinColumns = {@JoinColumn(name = "role_id")}
